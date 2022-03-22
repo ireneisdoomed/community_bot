@@ -1,12 +1,11 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 
-# TODO: Specify response model
+from community_bot.schemas import *
 
 app = FastAPI()
 
-@app.post("/webhook")
-async def listener(payload: dict[str, dict]):
+@app.post("/new_post_hook", response_model=NewPost)
+async def listener(payload: NewPost):
     print(payload)
     return payload
 
