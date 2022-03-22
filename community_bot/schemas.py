@@ -2,11 +2,13 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
+
 class UserMinimal(BaseModel):
     id: int
     username: str
     name: str
     avatar_template: str
+
 
 class Topic(BaseModel):
     tags: list[str | None]
@@ -44,6 +46,7 @@ class Topic(BaseModel):
     created_by: UserMinimal
     last_poster: UserMinimal
     tags_disable_ads: bool
+
 
 class InNewPost(BaseModel):
     topic: Topic
