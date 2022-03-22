@@ -4,8 +4,8 @@ from community_bot.schemas import *
 
 app = FastAPI()
 
-@app.post("/new_post_hook", response_model=NewPost)
-async def listener(payload: NewPost):
+@app.post("/new_post_hook", response_model=InNewPost)
+async def listener(payload: InNewPost):
     print(payload)
     return payload
 

@@ -45,5 +45,5 @@ class Topic(BaseModel):
     last_poster: UserMinimal
     tags_disable_ads: bool
 
-class NewPost(BaseModel):
+class InNewPost(BaseModel):
     topic: Topic
