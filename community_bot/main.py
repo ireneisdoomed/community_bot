@@ -28,11 +28,23 @@ async def new_post_hook(payload: InNewPost):
 @app.get("/latest_posts", status_code=status.HTTP_200_OK)
 async def latest_posts():
 
-    res = get_latest_posts()
+    latest_input = get_latest_posts()
+    unanswered_posts = []
 
-    # TODO: Process the response to only return the data we want
+    for post in latest_input['topic_list']['topics']:
+        # Only add posts that have not been answered yet
+        if post["reply_count"] == 0 or post["highest_post_number"] == 1:
+
+            unanswered_posts.append({
+                "title": post["title"],
+                "date": post["created_at"],
+            })
+
+    latest_output = {
+        "count": len(unanswered_posts),
+        "posts": unanswered_posts}
     
-    return res['topic_list']['topics'][0]
+    return latest_output
 
 def get_latest_posts():
     """
