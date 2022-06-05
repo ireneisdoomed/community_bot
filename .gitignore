@@ -1,1 +1,3 @@
 community_bot/__pycache__/*
+community_bot/.env
+community_bot/ngrok
