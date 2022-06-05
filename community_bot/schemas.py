@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from pydantic import BaseModel
 
@@ -48,5 +48,16 @@ class Topic(BaseModel):
     tags_disable_ads: bool
 
 
-class InNewPost(BaseModel):
+class InNewTopic(BaseModel):
     topic: Topic
+
+
+class UnansweredTopic(BaseModel):
+    title: str
+    date: date
+    tags: list[str]
+
+
+class OutUnansweredTopics(BaseModel):
+    count: int
+    posts: list[UnansweredTopic]

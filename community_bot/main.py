@@ -19,14 +19,14 @@ async def root():
     return {"message": "Welcome to the Open Targets Community Bot!"}
 
 
-@app.post("/new_post_hook", response_model=InNewPost, status_code=status.HTTP_200_OK)
-async def new_post_hook(payload: InNewPost):
+@app.post("/new_post_hook", response_model=InNewTopic, status_code=status.HTTP_200_OK)
+async def new_post_hook(payload: InNewTopic):
     print(payload)
 
     return payload
 
 
-@app.get("/latest_posts", status_code=status.HTTP_200_OK)
+@app.get("/latest_posts", response_model=OutUnansweredTopics, status_code=status.HTTP_200_OK)
 async def latest_posts():
 
     latest_input = get_latest_posts()
