@@ -1,3 +1,4 @@
+"""Interface between the Community API and the Slack bot."""
 import os
 
 from slack_bolt import App

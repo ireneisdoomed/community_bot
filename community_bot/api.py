@@ -1,3 +1,5 @@
+"""API that processes the payloads coming from the Discourse API."""
+
 from dotenv import load_dotenv
 import os
 

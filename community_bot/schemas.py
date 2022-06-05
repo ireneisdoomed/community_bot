@@ -1,3 +1,5 @@
+"""Pydantic models to validate the Community API's input and output responses."""
+
 from datetime import date, datetime
 
 from pydantic import BaseModel
