@@ -28,6 +28,9 @@ async def new_post_hook(payload: InNewTopic):
 
 @app.get("/latest_posts", response_model=OutUnansweredTopics, status_code=status.HTTP_200_OK)
 async def latest_posts():
+    """
+    Processes the response from get_latest_posts to look for posts that haven't been answered to.
+    """
 
     latest_input = get_latest_posts()
     unanswered_posts = []
@@ -48,7 +51,7 @@ async def latest_posts():
     
     return latest_output
 
-def get_latest_posts():
+def get_latest_posts() -> dict:
     """
     Returns the top 200 latest posts from the Discourse API.
     """
