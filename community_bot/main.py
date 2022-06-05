@@ -1,3 +1,4 @@
+from datetime import datetime
 from dotenv import load_dotenv
 import os
 
@@ -37,7 +38,8 @@ async def latest_posts():
 
             unanswered_posts.append({
                 "title": post["title"],
-                "date": post["created_at"],
+                "date": post["created_at"][:10],
+                "tags": post["tags"],
             })
 
     latest_output = {
