@@ -1,4 +1,3 @@
-from datetime import datetime
 from dotenv import load_dotenv
 import os
 
@@ -13,6 +12,7 @@ app = FastAPI(
     title="Bot of the Open Targets Community",
     version="0.1.0",
 )
+
 
 @app.get("/")
 async def root():
@@ -39,17 +39,18 @@ async def unanswered_topics():
         # Only add posts that have not been answered yet
         if post["reply_count"] == 0 or post["highest_post_number"] == 1:
 
-            unanswered_posts.append({
-                "title": post["title"],
-                "date": post["created_at"][:10],
-                "tags": post["tags"],
-            })
+            unanswered_posts.append(
+                {
+                    "title": post["title"],
+                    "date": post["created_at"][:10],
+                    "tags": post["tags"],
+                }
+            )
 
-    latest_output = {
-        "count": len(unanswered_posts),
-        "posts": unanswered_posts}
-    
+    latest_output = {"count": len(unanswered_posts), "posts": unanswered_posts}
+
     return latest_output
+
 
 def get_latest_posts() -> dict:
     """
