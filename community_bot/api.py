@@ -26,8 +26,8 @@ async def new_post_hook(payload: InNewTopic):
     return payload
 
 
-@app.get("/latest_posts", response_model=OutUnansweredTopics, status_code=status.HTTP_200_OK)
-async def latest_posts():
+@app.get("/unanswered", response_model=OutUnansweredTopics, status_code=status.HTTP_200_OK)
+async def unanswered_topics():
     """
     Processes the response from get_latest_posts to look for posts that haven't been answered to.
     """
