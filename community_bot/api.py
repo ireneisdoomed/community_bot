@@ -35,11 +35,23 @@ async def unanswered_topics():
     """
 
     latest_input = get_latest_posts()
-    unanswered_posts = []
 
+    moderators_list = [user["username"] for user in latest_input["users"] if user["trust_level"] == 4]
+
+    unanswered_posts = []
     for post in latest_input['topic_list']['topics']:
         # Only add posts that have not been answered yet and/or marked as resolved.
-        if "resolved" not in post["tags"] and (post["reply_count"] == 0 and post["highest_post_number"] == 1):
+        if (
+            # Filter out posts marked as resolved
+            "resolved" not in post["tags"]
+            and
+            # Keep posts that have not been answered yet
+            post["reply_count"] == 0
+            and post["highest_post_number"] == 1
+            and
+            # Filter out posts authored by moderators
+            post["last_poster_username"] not in moderators_list
+        ):
 
             unanswered_posts.append(
                 {
