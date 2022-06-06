@@ -57,6 +57,7 @@ class InNewTopic(BaseModel):
 class UnansweredTopic(BaseModel):
     title: str
     date: date
+    link: str
     tags: list[str]
 
 

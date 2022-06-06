@@ -38,13 +38,14 @@ async def unanswered_topics():
     unanswered_posts = []
 
     for post in latest_input['topic_list']['topics']:
-        # Only add posts that have not been answered yet
-        if post["reply_count"] == 0 or post["highest_post_number"] == 1 or "resolved" not in post["tags"]:
+        # Only add posts that have not been answered yet and/or marked as resolved.
+        if "resolved" not in post["tags"] and (post["reply_count"] == 0 or post["highest_post_number"] == 1):
 
             unanswered_posts.append(
                 {
                     "title": post["title"],
                     "date": post["created_at"][:10],
+                    "link": f'https://community.opentargets.org/t/{post["slug"]}/{post["id"]}',
                     "tags": post["tags"],
                 }
             )
