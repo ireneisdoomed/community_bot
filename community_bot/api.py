@@ -39,7 +39,7 @@ async def unanswered_topics():
 
     for post in latest_input['topic_list']['topics']:
         # Only add posts that have not been answered yet and/or marked as resolved.
-        if "resolved" not in post["tags"] and (post["reply_count"] == 0 or post["highest_post_number"] == 1):
+        if "resolved" not in post["tags"] and (post["reply_count"] == 0 and post["highest_post_number"] == 1):
 
             unanswered_posts.append(
                 {
