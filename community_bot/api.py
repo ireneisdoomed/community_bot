@@ -36,7 +36,7 @@ async def unanswered_topics():
 
     latest_input = get_latest_posts()
 
-    moderators_list = [user["username"] for user in latest_input["users"] if user["trust_level"] == 4]
+    moderators_list = [user["username"] for user in latest_input["users"] if user["trust_level"] == 4 and user["username"] != "SirTarget"]
 
     unanswered_posts = []
     for post in latest_input['topic_list']['topics']:
